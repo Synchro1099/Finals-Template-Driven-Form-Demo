@@ -52,10 +52,10 @@
   </div>
   <button class="btn btn-primary w-100" type="submit" [disabled]="!myForm.valid">Submit</button>
 </form>
-<div [hidden]="!submitted" class="alert alert-success mt-3 text-center">
+<div *ngIf="submitted" class="alert alert-success mt-3 text-center">
   Form submitted successfully!
 </div>
-<div [hidden]="!submittedData" class="card mt-3 mx-auto" style="max-width: 500px;">
+<div *ngIf="submittedData" class="card mt-3 mx-auto" style="max-width: 500px;">
   <div class="card-header text-center fw-bold">Submitted Data</div>
   <div class="card-body">
     <p><strong>Username:</strong> {{ submittedData.username }}</p>

@@ -1,0 +1,116 @@
+<p>reactive-demo works!</p>
+<div class="container">
+  <h1>Reactive Form</h1>
+  @if (!submitted) {
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" id="username" class="form-control" formControlName="username">
+        @if (isInvalid('username')) {
+          <div class="error-message">
+            Username: 4-12 chars (letters/numbers/_)
+          </div>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" class="form-control" formControlName="email">
+        @if (isInvalid('email')) {
+          <div class="error-message">
+            Enter a valid email
+          </div>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" class="form-control" formControlName="password">
+        @if (isInvalid('password')) {
+          <div class="error-message">
+            Password: 8+ with upper, lower, number
+          </div>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="role">Role</label>
+        <select id="role" class="form-control" formControlName="role">
+          @for (role of roles; track role) {
+            <option [value]="role">{{ role }}</option>
+          }
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Gender</label>
+        <div class="radio-group">
+          <input type="radio" id="male" value="male" formControlName="gender">
+          <label for="male">Male</label>
+          <input type="radio" id="female" value="female" formControlName="gender">
+          <label for="female">Female</label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Status</label>
+        <div class="radio-group">
+          <input type="radio" id="permanent" value="permanent" formControlName="status">
+          <label for="permanent">Permanent</label>
+          <input type="radio" id="probationary" value="probationary" formControlName="status">
+          <label for="probationary">Probationary</label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="comments">Comments (Notes)</label>
+        <textarea id="comments" class="form-control" formControlName="comments"></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  } @else {
+    <div class="results">
+      <h2>Form Data</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Field</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Username</td>
+            <td>{{ formData.username }}</td>
+          </tr>
+          <tr>
+            <td>Email</td>
+            <td>{{ formData.email }}</td>
+          </tr>
+          <tr>
+            <td>Password</td>
+            <td>{{ '******' }}</td>
+          </tr>
+          <tr>
+            <td>Role</td>
+            <td>{{ formData.role }}</td>
+          </tr>
+          <tr>
+            <td>Gender</td>
+            <td>{{ formData.gender }}</td>
+          </tr>
+          <tr>
+            <td>Status</td>
+            <td>{{ formData.status }}</td>
+          </tr>
+          <tr>
+            <td>Comments</td>
+            <td>{{ formData.comments }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <button class="btn btn-secondary" (click)="resetForm()">Edit</button>
+    </div>
+  }
+</div>
