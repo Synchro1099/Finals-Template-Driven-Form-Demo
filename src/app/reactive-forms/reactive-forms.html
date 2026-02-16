@@ -1,0 +1,75 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="p-4 bg-light rounded shadow-sm mx-auto" style="max-width: 500px;">
+  <div class="mb-3">
+    <label class="form-label">Username</label>
+    <input class="form-control" formControlName="username" placeholder="Enter username">
+    <div *ngIf="form.get('username')?.invalid && form.get('username')?.touched" class="text-danger">Username is required</div>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Email</label>
+    <input class="form-control" formControlName="email" placeholder="Enter email">
+    <div *ngIf="form.get('email')?.invalid && form.get('email')?.touched" class="text-danger">Valid email is required</div>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Password</label>
+    <input class="form-control" type="password" formControlName="password" placeholder="Enter password">
+    <div *ngIf="form.get('password')?.invalid && form.get('password')?.touched" class="text-danger">Password must be at least 6 characters</div>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Role</label>
+    <select class="form-select" formControlName="role">
+      <option value="" disabled>Select role</option>
+      <option value="admin">Admin</option>
+      <option value="user">User</option>
+      <option value="guest">Guest</option>
+    </select>
+    <div *ngIf="form.get('role')?.invalid && form.get('role')?.touched" class="text-danger">Role is required</div>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Gender</label><br>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" formControlName="gender" value="male">
+      <label class="form-check-label">Male</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" formControlName="gender" value="female">
+      <label class="form-check-label">Female</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" formControlName="gender" value="other">
+      <label class="form-check-label">Other</label>
+    </div>
+    <div *ngIf="form.get('gender')?.invalid && form.get('gender')?.touched" class="text-danger">Gender is required</div>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Status</label><br>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" formControlName="status" value="permanent">
+      <label class="form-check-label">Permanent</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" formControlName="status" value="probationary">
+      <label class="form-check-label">Probationary</label>
+    </div>
+    <div *ngIf="form.get('status')?.invalid && form.get('status')?.touched" class="text-danger">Status is required</div>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Comments</label>
+    <textarea class="form-control" formControlName="comments" placeholder="Enter notes or comments"></textarea>
+  </div>
+  <button class="btn btn-primary w-100" type="submit" [disabled]="!form.valid">Submit</button>
+</form>
+<div *ngIf="submitted" class="alert alert-success mt-3 text-center">
+  Form submitted successfully!
+</div>
+<div [hidden]="!submittedData" class="card mt-3 mx-auto" style="max-width: 500px;">
+  <div class="card-header text-center fw-bold">Submitted Data</div>
+  <div class="card-body">
+    <p><strong>Username:</strong> {{ submittedData.username }}</p>
+    <p><strong>Email:</strong> {{ submittedData.email }}</p>
+    <p><strong>Password:</strong> {{ submittedData.password }}</p>
+    <p><strong>Role:</strong> {{ submittedData.role }}</p>
+    <p><strong>Gender:</strong> {{ submittedData.gender }}</p>
+    <p><strong>Status:</strong> {{ submittedData.status }}</p>
+    <p><strong>Comments:</strong> {{ submittedData.comments }}</p>
+  </div>
+</div>
