@@ -12,6 +12,9 @@ export class ReactiveForms {
   form: FormGroup;
   submitted = false;
 
+  // Add this property to fix Netlify deployment error
+  submittedData: any = null;
+
   constructor(private fb: FormBuilder) {
     this.form = this.fb.group({
       username: ['', Validators.required],
@@ -26,5 +29,6 @@ export class ReactiveForms {
 
   onSubmit() {
     this.submitted = true;
+    this.submittedData = this.form.value;
   }
 }
